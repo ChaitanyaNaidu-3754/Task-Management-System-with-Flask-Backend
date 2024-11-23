@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <p>This is the TODO PAGE!!!!!</p>
+    <p>Enter your TASK</p>
+    <div class="form">
+        <form id="form" action="/submit" method="post">
+            <label for="title">Task</label><br>
+            <input type="text" name="title" placeholder="Enter your TASK!">
+            <br>
+
+            <label for="desc">Description</label><br>
+            <input type="text" name="desc" placeholder="Describe your TASK!">
+            <br>
+
+            <button id="submit">Submit</button>
+        </form>
+    </div>
+</div>
+
+
+<br>
+<table>
+    {% if todos %}
+        <thead><p>The Tasks to be done </p></thead>
+        <tr>
+            <th>Sno</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Created On</th>
+            <th>Action</th>
+        </tr>
+
+        {% for todo in todos %}
+            <tbody>
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ todo.title }}</td>
+                    <td>{{ todo.desc }}</td>
+                    <td>{{ todo.date_created.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                    <td>
+                        <!-- Form to mark as done -->
+                        <form action="{{ url_for('handle_done_task_action', sno=todo.sno) }}" method="POST" style="display:inline;">
+                            <input type="hidden" name="action" value="mark_done">
+                            <button id="action" type="submit">Done</button>
+                        </form>
+                        <!-- Form to delete -->
+                        <form action="{{ url_for('handle_done_task_action', sno=todo.sno) }}" method="POST" style="display:inline;">
+                            <input type="hidden" name="action" value="delete">
+                            <button id="action" type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        {% endfor %}
+        {% else %}
+            <p>No Tasks found.</p>
+    {% endif%}
+</table>
+{% endblock %}

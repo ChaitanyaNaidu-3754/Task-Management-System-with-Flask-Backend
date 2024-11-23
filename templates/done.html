@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table>
+    {%if done_tasks%}
+        <thead><p>The Tasks that are done </p></thead>
+        <tr>
+            <th>Sno</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Created On</th>
+            <th>Completed On</th>
+            <th>Action</th>
+        </tr>
+        <tbody>
+            {% for done in done_tasks %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ done.title}}</td>
+                    <td>{{ done.desc }}</td>
+                    <td>{{ done.date_created.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                    <td>{{ done.completed_on.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                    <td>
+                        <form action="{{ url_for('delete_permanent', sno=done.sno) }}" method="POST" style="display:inline;">
+                            <input type="hidden" name="action" value="delete">
+                            <button id="action" type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        {% else %}
+            <p>No Completed Tasks found.</p>
+    {%endif%}
+</table>
+    
+{% endblock %}

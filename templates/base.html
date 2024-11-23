@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block title%}TODO{%endblock%}</title>
+    <link rel="stylesheet" href="{{url_for('static', filename= 'css/style.css')}}">
+</head>
+<body> 
+    <header>
+        <div class="navbar">
+            <button id="logo"><h1>TODO App</h1></button>
+            <nav>
+                <a href="{{ url_for('index') }}">My Tasks</a>
+                <a href="{{ url_for('done') }}">Completed</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- Default content if no child template overrides -->
+        <p>Welcome to my Flask App!</p>
+        {% endblock %}
+    </main>
+    
+</body>
+</html>
