@@ -13,3 +13,12 @@ A simple and responsive To-Do List web application built with **Flask** (Python)
 - **Flask**: Backend web framework for handling HTTP requests and rendering HTML templates.
 - **HTML**: Markup language for creating the structure of the web pages.
 - **CSS**: Styling language used to design the layout and make the app visually appealing.
+
+
+## Installation
+
+To run this project locally, follow these steps:
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/ChaitanyaNaidu-3754/Task-Management-System-with-Flask-Backend.git
